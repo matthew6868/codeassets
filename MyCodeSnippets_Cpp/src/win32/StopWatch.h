@@ -2,15 +2,16 @@
 
 #include <windows.h>
 #include <stdio.h>
+#include <memory>
 
 struct CStopwatch
 {
-	static CStopwatch StartNew()
+	static CStopwatch* StartNew()
 	{
-		return CStopwatch();
+		return new CStopwatch();
 	}
 
-	void Reset()
+	void Reset(void)
 	{
 		LARGE_INTEGER qwTime;
 		QueryPerformanceCounter(&qwTime);
@@ -22,7 +23,7 @@ struct CStopwatch
 		LARGE_INTEGER qwTime;
 		QueryPerformanceCounter(&qwTime);
 
-		return static_cast<LONGLONG>(((qwTime.QuadPart - m_llStartTime)* 1000.0) / m_llFrequency);
+		return static_cast<LONGLONG>(((qwTime.QuadPart - m_llStartTime) * 1000.0) / m_llFrequency);
 	}
 
 	LONGLONG ElapsedTicks(void)
@@ -47,7 +48,6 @@ private:
 
 
 private:
-	friend struct CDumpStopwatch;
 	LONGLONG m_llFrequency;
 	LONGLONG m_llStartTime;
 };
@@ -56,15 +56,17 @@ struct CDumpStopwatch
 {
 	CDumpStopwatch()
 	{
-		m_sw = CStopwatch::StartNew();
+		m_spStopwatch.reset(CStopwatch::StartNew());
 	}
 	~CDumpStopwatch()
 	{
 		char szLog[256];
-		sprintf_s(szLog, sizeof(szLog) / sizeof(szLog[0]), "{mxu}elapsed time : %I64d in millseconds", m_sw.ElapsedMillseconds());
+		sprintf_s(szLog, sizeof(szLog) / sizeof(szLog[0]), "{mxu}elapsed time : %I64d in millseconds", m_spStopwatch->ElapsedMillseconds());
 		OutputDebugStringA(szLog);
+
+		m_spStopwatch.reset();
 	}
 
 private:
-	CStopwatch m_sw;
+	std::shared_ptr<CStopwatch> m_spStopwatch;
 };

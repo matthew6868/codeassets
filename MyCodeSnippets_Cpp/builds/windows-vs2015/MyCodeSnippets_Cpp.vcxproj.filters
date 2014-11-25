@@ -20,7 +20,7 @@
   <ItemGroup>
     <ClInclude Include="../../src/targetver.h" />
     <ClInclude Include="../../src/stdafx.h" />
-    <ClInclude Include="../../src/Win32\StopWatch.h">
+    <ClInclude Include="..\..\src\win32\Stopwatch.h">
       <Filter>win32</Filter>
     </ClInclude>
   </ItemGroup>

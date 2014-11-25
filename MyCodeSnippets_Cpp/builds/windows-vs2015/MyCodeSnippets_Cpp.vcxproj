@@ -83,7 +83,7 @@
   <ItemGroup>
     <ClInclude Include="../../src/stdafx.h" />
     <ClInclude Include="../../src/targetver.h" />
-    <ClInclude Include="../../src/Win32\StopWatch.h" />
+    <ClInclude Include="..\..\src\win32\Stopwatch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="../../src/stdafx.cpp">
