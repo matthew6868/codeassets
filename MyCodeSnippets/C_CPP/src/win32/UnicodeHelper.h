@@ -15,7 +15,7 @@ inline wchar_t* AnsiToUnicode(const char *str)
 		buffer = new wchar_t[n];
 		memset(buffer, 0, n);
 
-		int bytes ::MultiByteToWideChar(CP_ACP, 0, (const char *) str, -1, buffer, int(n + 1));
+		int bytes = ::MultiByteToWideChar(CP_ACP, 0, (const char *) str, -1, buffer, int(n + 1));
 		if (!bytes)
 		{
 			delete [] buffer;
