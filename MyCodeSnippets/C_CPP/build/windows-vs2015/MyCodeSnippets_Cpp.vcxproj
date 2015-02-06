@@ -155,6 +155,7 @@
     <ClInclude Include="..\..\src\win32\LogDebug.h" />
     <ClInclude Include="..\..\src\win32\RegisterHelper.h" />
     <ClInclude Include="..\..\src\win32\Stopwatch.h" />
+    <ClInclude Include="..\..\src\win32\UnicodeHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="../../src/stdafx.cpp">

@@ -35,6 +35,9 @@
     <ClInclude Include="..\..\src\win32\LogDebug.h">
       <Filter>win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\win32\UnicodeHelper.h">
+      <Filter>win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="../../src/stdafx.cpp" />
