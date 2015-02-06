@@ -8,14 +8,15 @@ inline wchar_t* AnsiToUnicode(const char *str)
 
 	if (str)
 	{
+		int codepage = AreFileApisANSI() ? CP_ACP : CP_OEMCP;
 		size_t nu = strlen(str);
-		size_t n = (size_t) ::MultiByteToWideChar(CP_ACP, 0, (const char *) str, int(nu), NULL, 0);
+		size_t n = (size_t) ::MultiByteToWideChar(codepage, 0, (const char *) str, int(nu), NULL, 0);
 
 		buffer = 0;
 		buffer = new wchar_t[n];
 		memset(buffer, 0, n);
 
-		int bytes = ::MultiByteToWideChar(CP_ACP, 0, (const char *) str, -1, buffer, int(n + 1));
+		int bytes = ::MultiByteToWideChar(codepage, 0, (const char *) str, -1, buffer, int(n + 1));
 		if (!bytes)
 		{
 			delete [] buffer;
@@ -32,14 +33,15 @@ inline char* UnicodeToAnsi(const wchar_t *str)
 
 	if (str)
 	{
+		int codepage = AreFileApisANSI() ? CP_ACP : CP_OEMCP;
 		size_t nu = wcslen(str);
-		size_t n = ::WideCharToMultiByte(CP_ACP, 0, str, int(nu), nullptr, 0, 0, 0);
+		size_t n = ::WideCharToMultiByte(codepage, 0, str, int(nu), nullptr, 0, 0, 0);
 
 		buffer = 0;
 		buffer = new char[n];
 		memset(buffer, 0, n);
 
-		int bytes = ::WideCharToMultiByte(CP_ACP, 0, str, int(nu), buffer, int(n), 0, 0);
+		int bytes = ::WideCharToMultiByte(codepage, 0, str, int(nu), buffer, int(n), 0, 0);
 		if (!bytes)
 		{
 			delete [] buffer;

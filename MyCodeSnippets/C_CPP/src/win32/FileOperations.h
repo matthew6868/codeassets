@@ -84,3 +84,24 @@ private:
 private:
 	HANDLE m_hFile;
 };
+
+#if 0
+
+void WriteMediaSampeToFile(IMediaSample const *pInSample, wchar_t const* pszFileName)
+{
+	HANDLE hFile = ::CreateFile(pszFileName, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (hFile != INVALID_HANDLE_VALUE) {
+		if (::SetFilePointer(hFile, 0, NULL, FILE_END) != INVALID_SET_FILE_POINTER) {
+			BYTE *lpBuffer;
+			DWORD dwNumberOfBytesToWrite = pInSample->GetActualDataLength();
+			DWORD dwBytesWritten = 0;
+			pInSample->GetPointer(&lpBuffer);
+
+			::WriteFile(hFile, lpBuffer, dwNumberOfBytesToWrite, &dwBytesWritten, NULL);
+
+			::CloseHandle(hFile);
+		}
+	}
+}
+
+#endif
