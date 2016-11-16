@@ -1,4 +1,8 @@
 /**
+Source: https://leetcode.com/problems/combine-two-tables/
+Author: matthew6868(mxu.public@outlook.com)
+Date: 2016-11-02
+
 175. Combine Two Tables
 Table: Person
 
