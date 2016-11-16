@@ -1,4 +1,8 @@
 /*
+ *  Source: https://leetcode.com/problems/fizz-buzz
+ *  Author: matthew6868(mxu.public@outlook.com)
+ *  Date: 2016-11-01
+ 
     412. Fizz Buzz
 
     Write a program that outputs the string representation of numbers from 1 to n.
