@@ -25,19 +25,17 @@ char* convertToTitle(int n) {
     static char result[32] = {'\0'};
     int count = 0;
     
-    while (n > 26) {
+    while (n > 0) {
         int remainder = (n - 1) % 26; // aways convert to zero index array
         result[count++] = 'A' + remainder;
         
         n  = (n - 1) / 26;
     }
-    
-    result[count] = 'A' + n - 1;
-    
+        
     // revert string
-    for (int i = 0; i <= count / 2; ++i) {
-        char temp = result[count - i];
-        result[count - i] = result[i];
+    for (int i = 0; i < count / 2; ++i) {
+        char temp = result[count - 1 - i];
+        result[count - 1- i] = result[i];
         result[i] = temp;
     }
     
